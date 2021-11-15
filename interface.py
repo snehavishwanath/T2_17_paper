@@ -1,5 +1,5 @@
 #! /usr/bin/python
-# Filename: interface2.py -----> calculate the distance between the atoms and pick up the one within the vander Waal distance + 0.5 cut - off.
+# Filename: interface2.py -----> calculate the distance between the atoms and pick up the one within the 5A, this is the cut-off used for low resolution structures.
 
 import sys
 import math # for the round off purpose
@@ -7,7 +7,6 @@ import math # for the round off purpose
 # the dictionary defines the values used for cryo_EM/homology models
 
 ab = {'C':2.5, 'N':2.5, 'O':2.5, 'S':2.5, 'P':2.5}  # Creating a dictionary(it has both the identifier and the value) 
-Q = 0  # Q is the cut - off
 
 n1 = sys.argv[1]
 list = []
@@ -52,7 +51,7 @@ for i1 in open(sys.argv[1]):
 
 			    							k1 = float(distance1)
 
-										if d1<= (l1 + k1 + Q):
+										if d1<= (l1 + k1):
 
 				    							g1 = open(n1[:4] + '_' + i1[21:22] + j1[21:22] +'_int.txt', 'a')                                                               
 											g1.write(i1[17:20]+ '\t' + i1[21:22]+ '\t' + i1[22:27]+ '\t'+ j1[17:20]+ '\t' + j1[21:22]+'\t' +j1[22:27]+ '\t'+ str(round(d1,2)) + '\n') # round is to round off the no.
